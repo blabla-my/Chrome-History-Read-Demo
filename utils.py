@@ -15,6 +15,9 @@ def table_info(table_name):
 def show_query_results(cur,rows,table_name):
     csvrows = [[r[1] for r in cur.execute(table_info(table_name))]]
     for row in rows:
+        url_parse = urlparse(row[1])
+        if url_parse.netloc != 'www.baidu.com':
+            continue
         csvrows.append([str(_) for _ in row])
     #print(csvrows)
     return csvrows
